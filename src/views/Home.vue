@@ -1,14 +1,35 @@
 <template>
   <div class="home">
-    <Header />
+    <Header :modal-teste="keyModal" />
     <div class="home__container">
       <div class="home__container__lefth">
-        <div v-for="(cliente, index) in clientes" :kay="cliente.id">
+        <div v-for="cliente in clientes" :key="cliente.id">
           <Table :cliente="cliente" @meDelete="deletarUsuario" />
         </div>
       </div>
       <div class="home__container__right">
         <Colapse />
+        <Modal :modal-teste="closeModal" v-if="closeModal">
+          <div class="modal">
+            <a @click="keyModal">fechar</a>
+            <input
+              type="text"
+              placeholder="diigite seu nome"
+              v-model="nomeField"
+            />
+            <input
+              type="text"
+              placeholder="diigite seu e-mail"
+              v-model="emailField"
+            />
+            <input
+              type="text"
+              placeholder="diigite seu idade"
+              v-model="idadeField"
+            />
+            <button @click="cadastrar">cadastrar</button>
+          </div>
+        </Modal>
       </div>
     </div>
   </div>
@@ -18,6 +39,7 @@
 import Table from "@/components/Table";
 import Header from "@/components/Header";
 import Colapse from "@/components/Colapse";
+import Modal from "@/components/Modal";
 
 export default {
   name: "Home",
@@ -25,9 +47,11 @@ export default {
     Header,
     Table,
     Colapse,
+    Modal,
   },
   data() {
     return {
+      closeModal: false,
       deuErro: false,
       idadeField: 0,
       nomeField: "",
@@ -73,6 +97,9 @@ export default {
       var id = $event.idDoCliente;
       var novoArray = this.clientes.filter((clientes) => cliente.id != id);
       this.clientes = novoArray;
+    },
+    keyModal() {
+      this.closeModal = !this.closeModal;
     },
   },
 };
@@ -125,6 +152,21 @@ export default {
         color: red;
       }
     }
+  }
+}
+.modal {
+  display: flex;
+  flex-direction: column;
+  a {
+    color: #fff;
+    width: 80px;
+    height: 30px;
+    background: red;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>

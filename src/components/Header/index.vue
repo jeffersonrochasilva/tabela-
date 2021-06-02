@@ -3,37 +3,29 @@
     <div class="header__container">
       <div class="header__container__lefth"><h1>Clientes Table</h1></div>
       <div class="header__container__center">
-        <a @click="mudarModal">Cadastrar</a>
+        <a @click="modalTeste">Cadastrar</a>
         <a>Conhecer</a>
         <a>Apoiar</a>
       </div>
       <div class="header__container__right"><a>Login</a></div>
     </div>
-    <div v-if="desativar" class="modal">
-      <div v-if="desativar" class="modal__two">
-        <Modal :modal-top="mudarModal" />
-      </div>
-    </div>
   </div>
 </template>
 <script>
-import Modal from "@/components/Modal";
 export default {
   data() {
-    return {
-      desativar: false,
-    };
+    return {};
   },
-  components: {
-    Modal,
+  props: {
+    modalTeste: Boolean,
+    closeModal: String,
   },
-  methods: {
-    mudarModal() {
-      this.desativar = !this.desativar;
-    },
+  mudarmodal() {
+    this.closeModal = !hits.closeModal;
   },
 };
 </script>
+-->
 
 <style lang="scss" scoped>
 .header {
@@ -83,21 +75,21 @@ export default {
     }
   }
 }
-.modal {
-  width: 100%;
-  height: 100%;
-  background: rgb(0, 0, 0, 0.8);
-  top: 0;
-  left: 0;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &__two {
-    width: 500px;
-    height: 300px;
-    background: #303030;
-    border-radius: 5px;
-  }
-}
+// .modal {
+//   width: 100%;
+//   height: 100%;
+//   background: rgb(0, 0, 0, 0.8);
+//   top: 0;
+//   left: 0;
+//   position: fixed;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   &__two {
+//     width: 500px;
+//     height: 300px;
+//     background: #303030;
+//     border-radius: 5px;
+//   }
+// }
 </style>
