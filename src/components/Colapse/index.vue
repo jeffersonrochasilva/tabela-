@@ -79,18 +79,38 @@ export default {
   methods: {
     mudarcolapse1() {
       this.mudar1 = !this.mudar1;
+      this.mudar2 = false;
+      this.mudar3 = false;
+      this.mudar4 = false;
+      this.mudar5 = false;
     },
     mudarcolapse2() {
       this.mudar2 = !this.mudar2;
+      this.mudar1 = false;
+      this.mudar3 = false;
+      this.mudar4 = false;
+      this.mudar5 = false;
     },
     mudarcolapse3() {
       this.mudar3 = !this.mudar3;
+      this.mudar2 = false;
+      this.mudar1 = false;
+      this.mudar4 = false;
+      this.mudar5 = false;
     },
     mudarcolapse4() {
       this.mudar4 = !this.mudar4;
+      this.mudar2 = false;
+      this.mudar3 = false;
+      this.mudar1 = false;
+      this.mudar5 = false;
     },
     mudarcolapse5() {
       this.mudar5 = !this.mudar5;
+      this.mudar2 = false;
+      this.mudar3 = false;
+      this.mudar4 = false;
+      this.mudar1 = false;
     },
   },
 };

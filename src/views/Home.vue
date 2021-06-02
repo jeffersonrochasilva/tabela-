@@ -3,10 +3,9 @@
     <Header />
     <div class="home__container">
       <div class="home__container__lefth">
-        <Table :cliente="clienteVictor" />
-        <Table :cliente="clienteJoao" />
-        <Table :cliente="clienteGustavo" />
-        <Table :cliente="clienteMaria" />
+        <div v-for="(cliente, index) in clientes" :kay="cliente.id">
+          <Table :cliente="cliente" @meDelete="deletarUsuario" />
+        </div>
       </div>
       <div class="home__container__right">
         <Colapse />
@@ -16,7 +15,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import Table from "@/components/Table";
 import Header from "@/components/Header";
 import Colapse from "@/components/Colapse";
@@ -30,27 +28,52 @@ export default {
   },
   data() {
     return {
-      clienteVictor: {
-        nome: "Victor Lima",
-        email: "victor@gmail.com",
-        idade: 22,
-      },
-      clienteMaria: {
-        nome: "Maria Silva",
-        email: "mariasilva@gmail.com",
-        idade: 32,
-      },
-      clienteJoao: {
-        nome: "João Albuqueruqe",
-        email: "albuquerque@gmail.com",
-        idade: 18,
-      },
-      clienteGustavo: {
-        nome: "Gustavo andrade",
-        email: "gustavoandrade@gmail.com",
-        idade: 27,
-      },
+      deuErro: false,
+      idadeField: 0,
+      nomeField: "",
+      emailField: "",
+      clientes: [
+        {
+          id: 1,
+          nome: "Mario Porto",
+          email: "Marioporto@gmail.com",
+          idade: 12,
+        },
+        {
+          id: 2,
+          nome: "Daniel Silva",
+          email: "danielsilva@gmail.com",
+          idade: 22,
+        },
+      ],
     };
+  },
+  methods: {
+    cadastrar() {
+      if (
+        this.nomeFielde == "" ||
+        this.nomeField == " " ||
+        this.nomeField < 3
+      ) {
+        // deuErro = true;
+        alert("Senha não são iguais");
+      } else
+        this.clientes.push({
+          nome: this.nomeField,
+          email: this.emailField,
+          idade: this.idadeField,
+          id: Date.now(),
+        })(
+          ((this.nomeField = ""), (this.emailField = ""), (this.idadeField = 0))
+        );
+    },
+    deletarUsuario: function($event) {
+      console.log("recebemdo evento");
+      console.log($event.idDoCliente);
+      var id = $event.idDoCliente;
+      var novoArray = this.clientes.filter((clientes) => cliente.id != id);
+      this.clientes = novoArray;
+    },
   },
 };
 </script>
@@ -80,8 +103,27 @@ export default {
       width: 50%;
       height: 100%;
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       align-items: center;
+      flex-direction: column;
+      input {
+        width: 400px;
+        height: 30px;
+        border-radius: 4px;
+        border: none;
+        text-align: center;
+        margin: 10px;
+      }
+      button {
+        width: 80px;
+        height: 30px;
+        background: rgb(41, 4, 252);
+        border: none;
+        border-radius: 4px;
+      }
+      p {
+        color: red;
+      }
     }
   }
 }
